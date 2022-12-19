@@ -1,0 +1,95 @@
+﻿@page "/me/{Username}"
+
+<style>
+    .section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 3rem 0;
+        gap: 1rem;
+        text-align: center;
+        flex-wrap: wrap;
+    }
+
+    .banner {
+        width: 55rem;
+        max-width: 55rem; 
+        margin-top: 6.5rem;
+    }
+</style>
+
+
+@if (_IsLoading)
+{
+
+}
+else
+{
+    <PageTitle>@(_user?.Name)</PageTitle>
+
+    <PortfolioHeader Name="@(_user?.Name)" />
+
+    <div class="main">
+        @foreach (ESection section in Enum.GetValues(typeof(ESection)))
+        {
+            var strategy = section.GetSectionStrategy();
+            @((MarkupString)strategy.CreateContent(_user!))            
+        }
+    </div>
+
+    <PortfolioFooter Name="@(_user?.Name)"/>
+}
+
+
+@code {
+    [Parameter]
+    public string Username { get; set; } = string.Empty;
+
+    [Parameter]
+    public string MainColor { get; set; } = string.Empty;
+
+    User? _user { get; set; }
+    bool _IsLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (string.IsNullOrEmpty(Username))
+        {
+            // tela de não encontrado
+            return;
+        }
+
+        await SearchUserAsync();
+        await SearchUserReposAsync();
+        _IsLoading = false;
+    }
+
+    async Task SearchUserAsync()
+    {
+        _user = await githubService.GetUserAsync(Username);
+
+        if (githubService.UserHasNoInformation(_user))
+        {
+            return;
+        }
+    }
+
+    async Task SearchUserReposAsync()
+    {
+        if (_user is null)
+        {
+            return;
+        }
+
+        int publicRepos = int.Parse(_user.PublicRepos);
+
+        var pagesCount = publicRepos < 100 ? 1 : Convert.ToInt32(publicRepos / 100);
+
+        for (int i = 0; i < pagesCount; i++)
+        {
+            int currentPage = i + 1;
+            _user.Repositories.AddRange(await githubService.GetUserRepositoriesAsync(Username, currentPage, publicRepos));
+        }
+    }
+}

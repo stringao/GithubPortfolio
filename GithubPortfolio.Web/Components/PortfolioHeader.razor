@@ -1,0 +1,16 @@
+﻿<header>
+    <h1>@($"</{Name.ToLower().Replace(" ", string.Empty)}>")</h1>
+    <ul>
+        @foreach (ESection section in Enum.GetValues(typeof(ESection)))
+        {
+            var paramatersUri = navigation.Uri.Replace(navigation.BaseUri, string.Empty);
+
+            <li><a href='@($"/#{section.ToString().ToLower()}")'>@(section.ToDescription().ToUpper())</a></li>
+        }
+    </ul>
+</header>
+
+@code {
+    [Parameter]
+    public string Name { get; set; } = string.Empty;
+}

@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Components\PortfolioFooter.razor.css" />
+    <None Remove="Components\PortfolioHeader.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Components\PortfolioFooter.razor.css" />
+    <Content Include="Components\PortfolioHeader.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.1" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GithubPortfolio.ApplicationService\GithubPortfolio.ApplicationService.csproj" />
+  </ItemGroup>
+
+</Project>

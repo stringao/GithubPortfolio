@@ -1,0 +1,9 @@
+﻿footer {
+    background: #161B22;
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4rem;
+}

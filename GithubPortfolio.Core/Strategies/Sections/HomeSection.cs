@@ -1,0 +1,23 @@
+﻿using GithubPortfolio.Core.Interfaces.Strategies;
+using GithubPortfolio.Core.Models;
+
+namespace GithubPortfolio.Core.Strategies.Sections;
+
+public class HomeSection : ISectionStrategy
+{
+    private const string _defaultBio = "I'm practicing and programming on Github";
+    private string _id { get { return "skills"; } }
+    public string Id { get { return _id; } }
+
+    public string CreateContent(User user)
+    {
+        return $"""
+                <div class="section" id="{_id}" style="margin: 10rem 0; gap: 2rem; margin: 10rem 0 0;">
+                    <h2 class="text-primary" style="font-size: 3.5rem;"> HEY, I'M {user.Name.ToUpper()} </h2>
+                    <span style="font-size: 1.3rem;"> {user.Bio ?? _defaultBio} </span>
+                    <img src="{user.AvatarUrl}" alt="Profile Photo" class="circle"/>
+                    <img src="./images/banner.svg" alt="Banner" class="banner"/>
+                </div>  
+                """;
+    }
+}
