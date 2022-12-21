@@ -1,5 +1,4 @@
 ﻿@page "/me/{Username}"
-
 <style>
     .section {
         display: flex;
@@ -14,16 +13,14 @@
 
     .banner {
         width: 55rem;
-        max-width: 55rem; 
+        max-width: 55rem;
         margin-top: 6.5rem;
     }
-
 
     #app {
         display: block !important;
     }
 </style>
-
 
 @if (_IsLoading)
 {
@@ -31,9 +28,9 @@
 }
 else
 {
-    <PageTitle>@(_user?.Name)</PageTitle>
+    <PageTitle>@(_user?.Name ?? _user?.Username)</PageTitle>
 
-    <PortfolioHeader Name="@(_user?.Name)" />
+    <PortfolioHeader Name="@(_user?.Name ?? _user?.Username)" />
 
     <div class="main">
         @foreach (ESection section in Enum.GetValues(typeof(ESection)))
@@ -89,7 +86,7 @@ else
 
         int publicRepos = int.Parse(_user.PublicRepos);
 
-        var pagesCount = publicRepos < 100 ? 1 : Convert.ToInt32(publicRepos / 100);
+        var pagesCount = publicRepos < 100 ? 1 : Math.Ceiling((decimal)publicRepos / 100);
 
         for (int i = 0; i < pagesCount; i++)
         {

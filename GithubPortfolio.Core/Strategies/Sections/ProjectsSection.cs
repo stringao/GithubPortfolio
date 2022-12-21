@@ -21,9 +21,45 @@ public class ProjectsSection : ISectionStrategy
                     justify-content: center;
                     align-items: center;
                     gap: 2rem;">
-                   
+                        <div style="display: flex; flex-wrap: wrap; flex-direction: row; gap: 4rem; justify-content: center;">
+                            {CreateProjectsContent(user.Repositories, 8)}
+                        </div>                       
                     </div>
+                     <div>
+                          See {user.PublicRepos} public projects on Github
+                     </div>
                 </div> 
                 """;
+
+    }
+
+    private string CreateProjectsContent(List<Repository> repositories, int take = 6)
+    {
+        var content = string.Empty;
+        var topRepos = repositories.OrderByDescending(x => x.Description is not null).ThenByDescending(x => x.StarCount).ThenByDescending(x => x.PushedAt)
+            .Where(x => x.Fork == false && x.Name.Length < 25 && x.Language is not null).Take(take).ToList();
+
+        foreach (var repo in topRepos)
+        {
+            content += $"""
+                        <div style="
+                            display: flex;
+                            flex-direction: column;
+                            background: #6e07f37d;
+                            width: 21rem;
+                            gap: 2rem;
+                            justify-content: flex-start;
+                            padding: 2rem;
+                            border-radius: 1rem;
+                            border: 0.1rem solid var(--primaryColor) !important;">
+                            <span style="font-size: 1.5rem; font-weight: bold; "> {repo.Name} </span>
+                            <span> {repo.Description} </span>
+                            <span style="text-decoration: underline;"> Main Stack: {repo.Language} </span>
+                            <a href="{repo.Url}" target="_blank" style="color: var(--primaryColor)"> See the Source Code </a>                        
+                        </div>
+                        """;
+        }
+
+        return content;
     }
 }

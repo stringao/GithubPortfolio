@@ -137,4 +137,5 @@ li {
 .hover-scale:hover {
     color: var(--textColor) !important;
     background: var(--primaryColor) !important;
+    border-radius: 5rem;
 }

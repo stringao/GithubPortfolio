@@ -14,11 +14,9 @@ public class HomeSection : ISectionStrategy
         return $"""
                 <div class="section" id="{_id}" style="margin: 10rem 0; gap: 2rem; margin: 10rem 0 0;">                   
                     <img src="{user.AvatarUrl}" alt="Profile Photo" class="circle"/>
-                    <h2 class="text-primary" style="font-size: 3.5rem;"> HEY, I'M {user.Name.ToUpper()} </h2>
+                    <h2 class="text-primary" style="font-size: 3.5rem;"> HEY, I'M {user.Name?.ToUpper() ?? user.Username.ToUpper() } </h2>
                     <span style="font-size: 1.3rem;"> {user.Bio ?? _defaultBio} </span>                 
-                    <img src="./images/banner.svg" alt="Banner" class="banner" 
-                    style="width: 55rem;
-                    max-width: 55rem;"/>
+                    <img src="./images/banner.svg" alt="Banner" class="banner"style="width: 55rem; max-width: 55rem;"/>
                 </div>  
                 """;
     }

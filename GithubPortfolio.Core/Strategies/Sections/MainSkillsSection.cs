@@ -63,7 +63,7 @@ public class MainSkillsSection : ISectionStrategy
 
     private string FormatLanguageName(string language)
     {
-        return language.Replace("+", "plus").Replace("#", "sharp").Replace(".", "dot").Replace("-", string.Empty);
+        return language.Replace("+", "plus").Replace("#", "sharp").Replace(".", "dot");
     }
 
     private string[] GetTopLanguages(List<Repository> repositories, int take = 6)

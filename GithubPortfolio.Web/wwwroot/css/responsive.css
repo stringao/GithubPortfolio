@@ -1,0 +1,44 @@
+﻿
+@media(max-width: 900px) {
+    .banner {
+        width: 45rem !important;
+    }
+}
+
+@media(max-width: 735px) {
+    .banner {
+        width: 35rem !important;
+    }
+}
+
+
+@media(max-width: 570px) {
+    .banner {
+        width: 25rem !important;
+    }
+
+    .circle {
+        width: 15rem !important;
+    }
+}
+
+
+@media(max-width: 410px) {
+    .banner {
+        width: 20rem !important;
+    }
+
+    .circle {
+        width: 15rem !important;
+    }
+}
+
+@media(max-width: 330px) {
+    .banner {
+        width: 16rem !important;
+    }
+
+    .circle {
+        width: 13rem !important;
+    }
+}

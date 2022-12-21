@@ -31,4 +31,7 @@ public class Repository
 
     [JsonProperty("stargazers_count")]
     public required int StarCount { get; set; }
+
+    [JsonProperty("html_url")]
+    public required string Url { get; set; }    
 }

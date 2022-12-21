@@ -1,5 +1,5 @@
 ﻿<header>
-    <h1>@($"</{Name.ToLower().Replace(" ", string.Empty)}>")</h1>
+    <h1>@($"</{Name?.ToLower().Replace(" ", string.Empty)}>")</h1>
     <ul>
         @foreach (ESection section in Enum.GetValues(typeof(ESection)))
         {
@@ -12,5 +12,5 @@
 
 @code {
     [Parameter]
-    public string Name { get; set; } = string.Empty;
+    public string? Name { get; set; }
 }
