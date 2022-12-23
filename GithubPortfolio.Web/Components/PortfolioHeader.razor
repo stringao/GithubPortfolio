@@ -1,6 +1,6 @@
 ﻿<header>
     <h1>@($"</{FormatNameForTitle()}>")</h1>
-    <ul>
+    <ul id="header-menu">
         @foreach (ESection section in Enum.GetValues(typeof(ESection)))
         {
             var paramatersUri = navigation.Uri.Replace(navigation.BaseUri, string.Empty);

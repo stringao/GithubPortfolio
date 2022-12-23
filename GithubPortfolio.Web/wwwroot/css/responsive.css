@@ -15,6 +15,14 @@
         padding: 0.5rem !important;
         text-align: center !important;
     }
+
+    header {
+        justify-content: center !important;
+    }
+
+    #header-menu {
+        display: none;
+    }
 }
 
 
