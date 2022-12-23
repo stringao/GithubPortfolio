@@ -1,5 +1,5 @@
 ﻿<header>
-    <h1>@($"</{Name?.ToLower().Replace(" ", string.Empty)}>")</h1>
+    <h1>@($"</{FormatNameForTitle()}>")</h1>
     <ul>
         @foreach (ESection section in Enum.GetValues(typeof(ESection)))
         {
@@ -12,5 +12,27 @@
 
 @code {
     [Parameter]
-    public string? Name { get; set; }
+    public string Name { get; set; } = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        if (string.IsNullOrEmpty(Name))
+        {
+            return;
+        }
+
+        var nameSplitted = Name.Split(" ");
+
+        if (nameSplitted.Length > 2)
+        {
+            var firstNameIndex = 0;
+            var lastNameIndex = nameSplitted.Length - 1;
+            Name = $"{nameSplitted[firstNameIndex]} {nameSplitted[lastNameIndex]}";
+        }
+    }
+
+    private string FormatNameForTitle()
+    {
+        return Name.ToLower().Replace(" ", string.Empty);
+    }
 }

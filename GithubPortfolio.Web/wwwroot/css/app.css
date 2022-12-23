@@ -139,3 +139,9 @@ li {
     background: var(--primaryColor) !important;
     border-radius: 5rem;
 }
+
+.hover-scale-invert:hover {
+    background: transparent !important;
+    color: var(--primaryColor) !important;
+    border: .05rem solid var(--primaryColor) !important;
+}

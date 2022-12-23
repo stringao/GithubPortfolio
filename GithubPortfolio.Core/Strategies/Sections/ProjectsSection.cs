@@ -1,5 +1,6 @@
 ﻿using GithubPortfolio.Core.Interfaces.Strategies;
 using GithubPortfolio.Core.Models;
+using static System.Net.WebRequestMethods;
 
 namespace GithubPortfolio.Core.Strategies.Sections;
 
@@ -25,9 +26,15 @@ public class ProjectsSection : ISectionStrategy
                             {CreateProjectsContent(user.Repositories, 8)}
                         </div>                       
                     </div>
-                     <div>
-                          See {user.PublicRepos} public projects on Github
-                     </div>
+                    <a href="https://github.com/{user.Username}?tab=repositories" target="_blank">
+                         <div class="hover-scale-invert" style="background: var(--primaryColor);
+                                font-size: 1.5rem;
+                                padding: 0.8rem;
+                                border-radius: 3rem;
+                                cursor: pointer;">
+                              See {user.PublicRepos} public projects on Github
+                         </div>
+                    </a>
                 </div> 
                 """;
 
@@ -37,7 +44,7 @@ public class ProjectsSection : ISectionStrategy
     {
         var content = string.Empty;
         var topRepos = repositories.OrderByDescending(x => x.Description is not null).ThenByDescending(x => x.StarCount).ThenByDescending(x => x.PushedAt)
-            .Where(x => x.Fork == false && x.Name.Length < 25 && x.Language is not null).Take(take).ToList();
+            .Where(x => x.Fork == false && x.Name.Length < 30 && x.Language is not null).Take(take).ToList();
 
         foreach (var repo in topRepos)
         {
@@ -52,7 +59,7 @@ public class ProjectsSection : ISectionStrategy
                             padding: 2rem;
                             border-radius: 1rem;
                             border: 0.1rem solid var(--primaryColor) !important;">
-                            <span style="font-size: 1.5rem; font-weight: bold; "> {repo.Name} </span>
+                            <span style="font-size: 1.5rem; font-weight: bold; word-break: break-all; "> {repo.Name} </span>
                             <span> {repo.Description} </span>
                             <span style="text-decoration: underline;"> Main Stack: {repo.Language} </span>
                             <a href="{repo.Url}" target="_blank" style="color: var(--primaryColor)"> See the Source Code </a>                        

@@ -9,6 +9,12 @@
     .banner {
         width: 35rem !important;
     }
+
+    footer {
+        flex-direction: column !important;
+        padding: 0.5rem !important;
+        text-align: center !important;
+    }
 }
 
 
@@ -20,6 +26,10 @@
     .circle {
         width: 15rem !important;
     }
+
+    .hover-scale-invert {
+        font-size: 1rem !important;
+    }
 }
 
 
@@ -30,6 +40,10 @@
 
     .circle {
         width: 15rem !important;
+    }
+
+    footer {
+        font-size: .8rem;
     }
 }
 
