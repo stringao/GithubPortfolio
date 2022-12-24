@@ -67,7 +67,7 @@ else if (_isLoading == false)
             return;
         }
 
-        await SearchUserReposAsync();
+        _user.Repositories = await SearchUserReposAsync();
         _isLoading = false;
     }
 
@@ -76,21 +76,26 @@ else if (_isLoading == false)
         return await githubService.GetUserAsync(Username);        
     }
 
-    async Task SearchUserReposAsync()
+    async Task<List<Repository>> SearchUserReposAsync()
     {
+        List<Repository> repos = new();
+        const int limitItemsSearchGithubApi = 100;
+
         if (_user is null)
         {
-            return;
+            return repos;
         }
 
         int publicRepos = int.Parse(_user.PublicRepos);
 
-        var pagesCount = publicRepos < 100 ? 1 : Math.Ceiling((decimal)publicRepos / 100);
+        var pagesCount = publicRepos < limitItemsSearchGithubApi ? 1 : Math.Ceiling((decimal)publicRepos / limitItemsSearchGithubApi);
 
         for (int i = 0; i < pagesCount; i++)
         {
             int currentPage = i + 1;
-            _user.Repositories.AddRange(await githubService.GetUserRepositoriesAsync(Username, currentPage, publicRepos));
+            repos.AddRange(await githubService.GetUserRepositoriesAsync(Username, currentPage, publicRepos));
         }
+
+        return repos;
     }
 }
