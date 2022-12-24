@@ -2,9 +2,9 @@
 using GithubPortfolio.Core.Models;
 using static System.Net.WebRequestMethods;
 
-namespace GithubPortfolio.Core.Strategies.Sections;
+namespace GithubPortfolio.Core.Strategies;
 
-public class ProjectsSection : ISectionStrategy
+public class ProjectsSection : IContentStrategy
 {
     private string _id { get { return "projects"; } }
     public string Id { get { return _id; } }

@@ -1,24 +1,24 @@
 ﻿using GithubPortfolio.Core.Attributes;
-using GithubPortfolio.Core.Strategies.Sections;
+using GithubPortfolio.Core.Strategies;
 using System.ComponentModel;
 
 namespace GithubPortfolio.Core.Enums;
 
 public enum ESection
 {
-    [SectionStrategy(nameof(HomeSection))]
+    [ContentStrategy(nameof(HomeSection))]
     [Description("Home")]
     Home,
 
-    [SectionStrategy(nameof(MainSkillsSection))]
+    [ContentStrategy(nameof(MainSkillsSection))]
     [Description("Main Skills")]
     MainSkills,
 
-    [SectionStrategy(nameof(ProjectsSection))]
+    [ContentStrategy(nameof(ProjectsSection))]
     [Description("Projects")]
     Projects,
 
-    [SectionStrategy(nameof(ContactSection))]
+    [ContentStrategy(nameof(ContactSection))]
     [Description("Contact")]
     Contact
 }

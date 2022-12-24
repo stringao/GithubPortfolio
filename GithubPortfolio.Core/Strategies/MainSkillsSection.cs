@@ -1,9 +1,9 @@
 ﻿using GithubPortfolio.Core.Interfaces.Strategies;
 using GithubPortfolio.Core.Models;
 
-namespace GithubPortfolio.Core.Strategies.Sections;
+namespace GithubPortfolio.Core.Strategies;
 
-public class MainSkillsSection : ISectionStrategy
+public class MainSkillsSection : IContentStrategy
 {
     private string _id { get { return "skills"; } }
     public string Id { get { return _id; } }
@@ -19,7 +19,7 @@ public class MainSkillsSection : ISectionStrategy
                 gap: 2rem;                 
                 padding: 4rem 0;     
                 background: #6e07f37d;">
-                    <h2 style="font-size: 2.5rem;"> My Main Skills </h2>
+                    <h2 style="font-size: 2.5rem;"> Main Skills </h2>
                     <div style="display: flex;
                     justify-content: center;
                     align-items: center;

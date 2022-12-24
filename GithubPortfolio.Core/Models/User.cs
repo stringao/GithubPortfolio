@@ -16,6 +16,21 @@ public class User
     [JsonProperty("avatar_url")]
     public required string AvatarUrl { get; set; }
 
+    [JsonProperty("company")]
+    public required string Company { get; set; }
+
+    [JsonProperty("blog")]
+    public required string Blog { get; set; }
+
+    [JsonProperty("location")]
+    public required string Location { get; set; }
+
+    [JsonProperty("twitter_username")]
+    public required string Twitter { get; set; }
+
+    [JsonProperty("email")]
+    public required string Email { get; set; }
+
     [JsonProperty("public_repos")]
     public required string PublicRepos { get; set; }
 

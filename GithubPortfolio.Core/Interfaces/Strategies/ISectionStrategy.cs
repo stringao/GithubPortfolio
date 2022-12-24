@@ -2,7 +2,7 @@
 
 namespace GithubPortfolio.Core.Interfaces.Strategies;
 
-public interface ISectionStrategy
+public interface IContentStrategy
 {
     string Id { get; }
     string CreateContent(User user);

@@ -12,9 +12,9 @@ public static class EnumHelper
              .SelectMany(member => member.GetCustomAttributes(typeof(DescriptionAttribute), true).Cast<DescriptionAttribute>()).FirstOrDefault().Description;
     }
 
-    public static ISectionStrategy GetSectionStrategy<TEnum>(this TEnum enumValue) where TEnum : struct
+    public static IContentStrategy GetSectionStrategy<TEnum>(this TEnum enumValue) where TEnum : struct
     {
         return typeof(TEnum).GetMember(enumValue.ToString())
-             .SelectMany(member => member.GetCustomAttributes(typeof(SectionStrategyAttribute), true).Cast<SectionStrategyAttribute>()).FirstOrDefault().SectionStrategy;
+             .SelectMany(member => member.GetCustomAttributes(typeof(ContentStrategyAttribute), true).Cast<ContentStrategyAttribute>()).FirstOrDefault().SectionStrategy;
     }
 }
