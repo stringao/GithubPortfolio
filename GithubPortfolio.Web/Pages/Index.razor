@@ -36,7 +36,7 @@ else if (_isLoading == false)
     <div class="main">
         @foreach (ESection section in Enum.GetValues(typeof(ESection)))
         {
-            var strategy = section.GetSectionStrategy();
+            var strategy = section.GetContentStrategy();
             @((MarkupString)strategy.CreateContent(_user!))
         }
     </div>
