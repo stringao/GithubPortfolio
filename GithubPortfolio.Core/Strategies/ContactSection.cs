@@ -40,7 +40,7 @@ public class ContactSection : IContentStrategy
 
         foreach (var contactItem in Enum.GetValues<EContactItem>())
         {
-            var strategy = contactItem.GetSectionStrategy();
+            var strategy = contactItem.GetContentStrategy();
             content += strategy.CreateContent(user);
         }
 

@@ -12,7 +12,7 @@ public static class EnumHelper
              .SelectMany(member => member.GetCustomAttributes(typeof(DescriptionAttribute), true).Cast<DescriptionAttribute>()).FirstOrDefault().Description;
     }
 
-    public static IContentStrategy GetSectionStrategy<TEnum>(this TEnum enumValue) where TEnum : struct
+    public static IContentStrategy GetContentStrategy<TEnum>(this TEnum enumValue) where TEnum : struct
     {
         return typeof(TEnum).GetMember(enumValue.ToString())
              .SelectMany(member => member.GetCustomAttributes(typeof(ContentStrategyAttribute), true).Cast<ContentStrategyAttribute>()).FirstOrDefault().SectionStrategy;
