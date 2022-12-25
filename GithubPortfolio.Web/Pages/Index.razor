@@ -1,7 +1,92 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<style>
+    .section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 3rem 0;
+        gap: 1rem;
+        text-align: center;
+        flex-wrap: wrap;
+    }
 
-<h1>Hello, world!</h1>
+    .banner {
+        width: 55rem;
+        max-width: 55rem;
+        margin-top: 6.5rem;
+    }
+
+    #app {
+        display: block !important;
+    }
+</style>
+
+@if (_noInformation)
+{
+    <span>NO INFO..</span>
+}
+else if (_isLoading == false)
+{
+    <PageTitle>@(_user?.Name ?? _user?.Username)</PageTitle>
+
+    <PortfolioHeader Name="@(_user?.Name ?? _user?.Username)" />
+
+    <div class="main">
+        @foreach (ESection section in Enum.GetValues(typeof(ESection)))
+        {
+            var strategy = section.GetSectionStrategy();
+            @((MarkupString)strategy.CreateContent(_user!))
+        }
+    </div>
+
+    <PortfolioFooter Name="@(_user?.Name)" />
+}
 
 
+
+@code {
+    public string Username { get; set; } = "stringao";
+
+    User? _user { get; set; }
+    bool _isLoading = true;
+    bool _noInformation = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _user = await SearchUserAsync();
+
+        if (githubService.UserHasNoInformation(_user))
+        {
+            _noInformation = true;
+            return;
+        }
+
+        await SearchUserReposAsync();
+        _isLoading = false;
+    }
+
+    async Task<User> SearchUserAsync()
+    {
+        return await githubService.GetUserAsync(Username);
+    }
+
+    async Task SearchUserReposAsync()
+    {
+        if (_user is null)
+        {
+            return;
+        }
+
+        int publicRepos = int.Parse(_user.PublicRepos);
+
+        var pagesCount = publicRepos < 100 ? 1 : Math.Ceiling((decimal)publicRepos / 100);
+
+        for (int i = 0; i < pagesCount; i++)
+        {
+            int currentPage = i + 1;
+            _user.Repositories.AddRange(await githubService.GetUserRepositoriesAsync(Username, currentPage, publicRepos));
+        }
+    }
+}

@@ -14,6 +14,9 @@ public enum EContactItem
     [ContentStrategy(nameof(LocationContactItem))]
     Location,
 
-    [ContentStrategy(nameof(TwitterContactItem))]  
+    [ContentStrategy(nameof(EmailContactItem))]
+    Email,
+
+    [ContentStrategy(nameof(TwitterContactItem))]
     Twitter
 }

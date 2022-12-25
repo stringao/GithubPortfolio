@@ -1,1 +1,21 @@
-﻿
+﻿/*.section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem 0;
+    gap: 1rem;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.banner {
+    width: 55rem;
+    max-width: 55rem;
+    margin-top: 6.5rem;
+}
+
+#app {
+    display: block !important;
+}
+*/

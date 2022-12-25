@@ -1,6 +1,5 @@
 ﻿using GithubPortfolio.Core.Interfaces.Strategies;
 using GithubPortfolio.Core.Models;
-using static System.Net.WebRequestMethods;
 
 namespace GithubPortfolio.Core.Strategies;
 
@@ -17,7 +16,7 @@ public class ProjectsSection : IContentStrategy
                 margin: 0rem 0;
                 gap: 2rem; 
                 padding: 4rem 0;">
-                    <h2 style="font-size: 2.5rem;"> Projects </h2>
+                    <h2 style="font-size: 2.5rem;text-shadow: 1px 1px 2px black, 0 0 25px lightgrey, 0 0 5px white;"> Projects </h2>
                     <div style="display: flex;
                     justify-content: center;
                     align-items: center;
@@ -62,7 +61,7 @@ public class ProjectsSection : IContentStrategy
                             <span style="font-size: 1.5rem; font-weight: bold; word-break: break-all; "> {repo.Name} </span>
                             <span> {repo.Description} </span>
                             <span style="text-decoration: underline;"> Main Stack: {repo.Language} </span>
-                            <a href="{repo.Url}" target="_blank" style="color: var(--primaryColor)"> See the Source Code </a>                        
+                            <a href="{repo.Url}" target="_blank" style="text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;color: var(--primaryColor)"> See the Source Code </a>                        
                         </div>
                         """;
         }

@@ -19,7 +19,7 @@ public class MainSkillsSection : IContentStrategy
                 gap: 2rem;                 
                 padding: 4rem 0;     
                 background: #6e07f37d;">
-                    <h2 style="font-size: 2.5rem;"> Main Skills </h2>
+                    <h2 style="font-size: 2.5rem;text-shadow: 1px 1px 2px black, 0 0 25px lightgrey, 0 0 5px white;"> Main Skills </h2>
                     <div style="display: flex;
                     justify-content: center;
                     align-items: center;
@@ -40,7 +40,7 @@ public class MainSkillsSection : IContentStrategy
             content += $"""
                 <a href="https://github.com/topics/{FormatLanguageName(language)}" target="_blank"> 
                     <div style="
-                    background: #14e9562e;
+                    background: #e5daff;
                     color: var(--primaryColor);
                     border-radius: 2rem;
                     font-size: 1.5rem;
